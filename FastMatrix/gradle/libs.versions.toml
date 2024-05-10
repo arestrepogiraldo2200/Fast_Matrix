@@ -1,0 +1,10 @@
+[versions]
+guava = "32.1.1-jre"
+junit-jupiter = "5.9.3"
+picocli = "4.7.5"
+
+[libraries]
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+junit-jupyter = { module = "org.unit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+picocli = { group = "info.picocli", name = "picocli", version.ref = "picocli" }
+picocli-codegen = { group = "info.picocli", name = "picocli-codegen", version.ref = "picocli" }
