@@ -23,27 +23,44 @@ import static com.codigofacilito.fastmatrix.ReadData.*;
 )
 public class FastMatrixApp implements Callable<Integer>{
 
+    // Options of the cli
+    @ArgGroup(exclusive = true)
+    private JEnvOptions jEnvOptions;
 
-    @Option(names = {"-defm", "--definem"}, description = "Define a square matrix")
-    private boolean definem;
+    static class JEnvOptions {
 
-    @Parameters(paramLabel = "<Matrix name>", index="0", description = "Name of matrix to be stored")
-    private String nameM;
+        @Option(names = {"-defm"}, required = true,description = "Define a square matrix")
+        private boolean nameM;
+
+        @Option(names = {"-defv"}, required = true,description = "Define a vector")
+        private boolean nameV;
+
+
+//        @Option(names={"-",""} , paramLabel = "<Matrix name>", index="0", description = "Name of matrix to be stored")
+//        private String nameM;
+    }
 
     // call method to inform the status of execution
     @Override
     public Integer call() throws Exception {
-//        if (definem) {
-//            ReadData.enterMatrix();
-//            return 0;
-//        }
+        if (jEnvOptions.nameM) {
+            //ReadData.enterMatrix();
+            System.out.println("MMMMMMMM");
+            //return 0;
+        }
+        if (jEnvOptions.nameV) {
+            //ReadData.enterMatrix();
+            System.out.println("VVVVVVV");
+            //return 0;
+        }
         return 0;
     }
 
     // Communication with terminal
     public static void main(String[] args) {
-//        int exitCode = new CommandLine(new FastMatrixApp()).execute(args);
-//        System.exit(exitCode);
+
+        int exitCode = new CommandLine(new FastMatrixApp()).execute(args);
+        System.exit(exitCode);
 
         //ArrayList<ArrayList<Double>> M = new ArrayList<>();
         //M.add(new ArrayList<>(Arrays.asList(3.0,1.0,-3.0)));
