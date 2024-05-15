@@ -1,5 +1,4 @@
 package com.codigofacilito.fastmatrix;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -34,11 +33,7 @@ public class MatrixUtils {
         ArrayList<Double> Col = new ArrayList<>();
 
         for (int k = 0; k < M.size(); k++) {
-            for (int l = 0; l < M.get(k).size(); l++) {
-                if (l == i) {
-                    Col.add(M.get(k).get(l));
-                }
-            }
+                Col.add(M.get(k).get(i));
         }
         return Col;
     }
@@ -56,11 +51,7 @@ public class MatrixUtils {
         ArrayList<Double> diag = new ArrayList<>();
 
         for (int k = 0; k < M.size(); k++) {
-            for (int l = 0; l < M.get(k).size(); l++) {
-                if (l == k) {
-                    diag.add(M.get(k).get(l));
-                }
-            }
+            diag.add(M.get(k).get(k));
         }
         return diag;
     }

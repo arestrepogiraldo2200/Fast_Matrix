@@ -1,15 +1,9 @@
 package com.codigofacilito.fastmatrix;
-
-import netscape.javascript.JSObject;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 import org.json.*;
-import com.google.gson.*;
-
 import static com.codigofacilito.fastmatrix.MatrixUtils.zeros;
 import static com.codigofacilito.fastmatrix.MatrixUtils.zerosV;
 

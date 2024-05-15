@@ -1,12 +1,10 @@
 package com.codigofacilito.fastmatrix;
-
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class MatrixDeterminant {
 
     // ================================================================================
-    public static ArrayList<ArrayList<Double>> upperTriangular(ArrayList<ArrayList<Double>> M){
+    private static ArrayList<ArrayList<Double>> upperTriangular(ArrayList<ArrayList<Double>> M){
 
         for (int i = 1; i < M.size(); i++) {
             for (int j = 0; j < i; j++) {
@@ -35,9 +33,4 @@ public class MatrixDeterminant {
 
         return det;
     }
-
-
-
-
-
 }

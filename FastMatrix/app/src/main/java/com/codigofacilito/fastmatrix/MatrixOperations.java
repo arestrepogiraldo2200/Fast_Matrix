@@ -18,7 +18,7 @@ public class MatrixOperations {
     }
 
     // ================================================================================
-    public static ArrayList<ArrayList<Double>> dotProduct(ArrayList<ArrayList<Double>> M, ArrayList<ArrayList<Double>> N){
+    public static ArrayList<ArrayList<Double>> dotProductM(ArrayList<ArrayList<Double>> M, ArrayList<ArrayList<Double>> N){
 
         ArrayList<ArrayList<Double>> P = new ArrayList<>(M.size());
 
@@ -58,16 +58,36 @@ public class MatrixOperations {
     // ================================================================================
     public static ArrayList<Double> matrixTimesVector(ArrayList<ArrayList<Double>> M, ArrayList<Double> v){
 
-        ArrayList<Double> w = new ArrayList<>(v.size());
+        ArrayList<Double> w = new ArrayList<>();
 
         for (int i = 0; i < M.size(); i++) {
             double s = 0.0;
             for (int k = 0; k < M.size(); k++) {
                 s += M.get(i).get(k) * v.get(k);
             }
-            w.set(i, s);
+            w.add(s);
         }
         return w;
     }
+
+    // ================================================================================
+    public static double dotProductV(ArrayList<Double> v, ArrayList<Double> w){
+
+        double p = 0.0;
+
+        for (int i = 0; i < v.size(); i++) {
+            p += v.get(i)*w.get(i);
+        }
+        return p;
+    }
+
+    // ================================================================================
+    public static ArrayList<Double> scalarProductV(ArrayList<Double> v, double a){
+        for (int j = 0; j < v.size(); j++){
+            v.set(j, v.get(j) * a);
+        }
+        return v;
+    }
+
 }
 

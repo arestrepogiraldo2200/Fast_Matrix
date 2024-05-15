@@ -1,13 +1,10 @@
 package com.codigofacilito.fastmatrix;
-
 import java.util.ArrayList;
-
-import static com.codigofacilito.fastmatrix.MatrixUtils.printMatrix;
 
 public class MatrixSolveSystem {
 
     // ================================================================================
-    public static void pivot(ArrayList<ArrayList<Double>> M, ArrayList<Double> b){
+    private static void pivot(ArrayList<ArrayList<Double>> M, ArrayList<Double> b){
 
         for (int i = 0; i < M.size(); i++) {
             Double d = M.get(i).get(i);
@@ -21,7 +18,7 @@ public class MatrixSolveSystem {
     }
 
     // ================================================================================
-    public static void pivotUpperTriangular(ArrayList<ArrayList<Double>> M, ArrayList<Double> b) {
+    private static void pivotUpperTriangular(ArrayList<ArrayList<Double>> M, ArrayList<Double> b) {
 
         for (int i = 1; i < M.size(); i++) {
             for (int j = 0; j < i; j++) {
@@ -36,7 +33,7 @@ public class MatrixSolveSystem {
     }
 
     // ================================================================================
-    public static void diagonal(ArrayList<ArrayList<Double>> M, ArrayList<Double> b) {
+    private static void diagonal(ArrayList<ArrayList<Double>> M, ArrayList<Double> b) {
 
         for (int i = M.size()-2; i >= 0; i--) {
             for (int j = M.size()-1; j >= i+1; j--) {
@@ -57,5 +54,4 @@ public class MatrixSolveSystem {
 
         return b;
     }
-
 }
