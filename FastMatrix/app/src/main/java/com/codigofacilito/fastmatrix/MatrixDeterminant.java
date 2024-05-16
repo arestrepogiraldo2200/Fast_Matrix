@@ -1,34 +1,49 @@
 package com.codigofacilito.fastmatrix;
+
 import java.util.ArrayList;
+
+import static java.lang.Math.pow;
 
 public class MatrixDeterminant {
 
     // ================================================================================
-    private static ArrayList<ArrayList<Double>> upperTriangular(ArrayList<ArrayList<Double>> M){
+    // Computes the cofactor matrix
+    private static ArrayList<ArrayList<Double>> cofactor(ArrayList<ArrayList<Double>> M, int k, int l) {
 
-        for (int i = 1; i < M.size(); i++) {
-            for (int j = 0; j < i; j++) {
-                Double l = M.get(i).get(j);
-                if (M.get(j).get(j) == 0){
-                    continue;
-                } else {
-                    for (int k = 0; k < M.get(i).size(); k++) {
-                        M.get(i).set(k, M.get(i).get(k) - M.get(j).get(k) * l / M.get(j).get(j));
+        ArrayList<ArrayList<Double>> Mcof = new ArrayList<>();
+
+        for (int i = 0; i < M.size(); i++) {
+
+            ArrayList<Double> Row = new ArrayList<>();
+
+            if (i == k) {
+                continue;
+            } else {
+                for (int j = 0; j < M.size(); j++) {
+                    if (j == l) {
+                        continue;
+                    } else {
+                        Row.add(M.get(i).get(j));
                     }
                 }
+                Mcof.add(Row);
             }
         }
-        return M;
+        return Mcof;
     }
 
     // ================================================================================
-    public static double determinant(ArrayList<ArrayList<Double>> M){
+    // Recursive function to compute the determinant from cofactors
+    public static double determinant(ArrayList<ArrayList<Double>> M) {
 
-        ArrayList<ArrayList<Double>> P = upperTriangular(M);
-        double det = 1;
+        double det = 0;
 
-        for (int i = 0; i < P.size(); i++) {
-            det *= P.get(i).get(i);
+        for (int i = 0; i < M.size(); i++) {
+            det += pow(-1, i) * M.get(0).get(i) * determinant(cofactor(M, 0, i));
+        }
+
+        if (M.size() == 2) {
+            return M.get(0).get(0) * M.get(1).get(1) - M.get(0).get(1) * M.get(1).get(0);
         }
 
         return det;

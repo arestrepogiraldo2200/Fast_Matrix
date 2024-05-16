@@ -1,16 +1,14 @@
 package com.codigofacilito.fastmatrix;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-
 
 public class MatrixOperations {
 
     // ================================================================================
-    public static ArrayList<ArrayList<Double>> scalarProduct(ArrayList<ArrayList<Double>> M, double a){
+    // Computes the scalar product between a scalar and a matrix
+    public static ArrayList<ArrayList<Double>> scalarProduct(ArrayList<ArrayList<Double>> M, double a) {
         for (int i = 0; i < M.size(); i++) {
-            for (int j = 0; j < M.size(); j++){
+            for (int j = 0; j < M.size(); j++) {
                 M.get(i).set(j, M.get(i).get(j) * a);
             }
         }
@@ -18,7 +16,8 @@ public class MatrixOperations {
     }
 
     // ================================================================================
-    public static ArrayList<ArrayList<Double>> dotProductM(ArrayList<ArrayList<Double>> M, ArrayList<ArrayList<Double>> N){
+    // Computes the product element by element of two matrices of the same dimensions
+    public static ArrayList<ArrayList<Double>> dotProductM(ArrayList<ArrayList<Double>> M, ArrayList<ArrayList<Double>> N) {
 
         ArrayList<ArrayList<Double>> P = new ArrayList<>(M.size());
 
@@ -27,7 +26,7 @@ public class MatrixOperations {
         }
 
         for (int i = 0; i < M.size(); i++) {
-            for (int j = 0; j < M.size(); j++){
+            for (int j = 0; j < M.size(); j++) {
                 P.get(i).set(j, M.get(i).get(j) * N.get(i).get(j));
             }
         }
@@ -35,7 +34,8 @@ public class MatrixOperations {
     }
 
     // ================================================================================
-    public static ArrayList<ArrayList<Double>> matrixProduct(ArrayList<ArrayList<Double>> M, ArrayList<ArrayList<Double>> N){
+    // Computes the regular product of two matrices of the same dimensions
+    public static ArrayList<ArrayList<Double>> matrixProduct(ArrayList<ArrayList<Double>> M, ArrayList<ArrayList<Double>> N) {
 
         ArrayList<ArrayList<Double>> P = new ArrayList<>(M.size());
 
@@ -44,7 +44,7 @@ public class MatrixOperations {
         }
 
         for (int i = 0; i < M.size(); i++) {
-            for (int j = 0; j < M.size(); j++){
+            for (int j = 0; j < M.size(); j++) {
                 double s = 0.0;
                 for (int k = 0; k < M.size(); k++) {
                     s += M.get(i).get(k) * N.get(k).get(j);
@@ -56,7 +56,8 @@ public class MatrixOperations {
     }
 
     // ================================================================================
-    public static ArrayList<Double> matrixTimesVector(ArrayList<ArrayList<Double>> M, ArrayList<Double> v){
+    // Computes the product of a matrix over a vector of the same dimension
+    public static ArrayList<Double> matrixTimesVector(ArrayList<ArrayList<Double>> M, ArrayList<Double> v) {
 
         ArrayList<Double> w = new ArrayList<>();
 
@@ -71,23 +72,36 @@ public class MatrixOperations {
     }
 
     // ================================================================================
-    public static double dotProductV(ArrayList<Double> v, ArrayList<Double> w){
+    // Computes the dot product between two vectors of the same dimensions
+    public static double dotProductV(ArrayList<Double> v, ArrayList<Double> w) {
 
         double p = 0.0;
 
         for (int i = 0; i < v.size(); i++) {
-            p += v.get(i)*w.get(i);
+            p += v.get(i) * w.get(i);
         }
         return p;
     }
 
     // ================================================================================
-    public static ArrayList<Double> scalarProductV(ArrayList<Double> v, double a){
-        for (int j = 0; j < v.size(); j++){
+    // Computes the scalar product between a scalar and a vector
+    public static ArrayList<Double> scalarProductV(ArrayList<Double> v, double a) {
+        for (int j = 0; j < v.size(); j++) {
             v.set(j, v.get(j) * a);
         }
         return v;
     }
 
-}
+    // ================================================================================
+    // Computes the trace of a matrix
+    public static double trace(ArrayList<ArrayList<Double>> M) {
 
+        double s = 0.0;
+
+        for (int i = 0; i < M.size(); i++) {
+            s += M.get(i).get(i);
+        }
+
+        return s;
+    }
+}
