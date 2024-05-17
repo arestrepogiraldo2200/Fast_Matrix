@@ -32,64 +32,64 @@ public class FastMatrixApp implements Callable<Integer> {
 
     static class JEnvOptions {
 
-        @Option(names = {"-defm"}, description = "Define and initialize a square matrix of the given name")
+        @Option(names = {"-defm"}, description = "Define and initialize a square matrix of the given name nameM.")
         private String nameM = "";
 
-        @Option(names = {"-defv"}, required = true, description = "Define and initialize a vector of the given name")
+        @Option(names = {"-defv"}, required = true, description = "Define and initialize a vector of the given name nameV.")
         private String nameV = "";
 
-        @Option(names = {"-editr"}, required = true, description = "Edit a given row r of an already defined matrix M. Notation r@M")
+        @Option(names = {"-editr"}, required = true, description = "Edit a given row r of an already defined matrix M. Notation r@M.")
         private String editrM = "";
 
-        @Option(names = {"-editc"}, required = true, description = "Edit a given column c of an already defined matrix M. Notation c@M")
+        @Option(names = {"-editc"}, required = true, description = "Edit a given column c of an already defined matrix M. Notation c@M.")
         private String editcM = "";
 
-        @Option(names = {"-findm"}, required = true, description = "Find and display a stored matrix")
+        @Option(names = {"-findm"}, required = true, description = "Find and display a stored matrix of a given name.")
         private String fnameM = "";
 
-        @Option(names = {"-findv"}, required = true, description = "Find and display a stored vector")
+        @Option(names = {"-findv"}, required = true, description = "Find and display a stored vector of a given name.")
         private String fnameV = "";
 
-        @Option(names = {"-clean"}, required = true, description = "Cleans all the variables defined")
+        @Option(names = {"-clean"}, required = true, description = "Cleans all the variables defined.")
         private boolean clean;
 
-        @Option(names = {"-det"}, required = true, description = "Compute the determinant of a stored matrix")
+        @Option(names = {"-det"}, required = true, description = "Compute the determinant of a stored matrix of a given name.")
         private String detM = "";
 
-        @Option(names = {"-prod"}, required = true, description = "Multiply a matrix times a vector of the same dimension. Deliver in notation A*v, where A is the matrix and v the vector. The * is mandatory")
+        @Option(names = {"-prod"}, required = true, description = "Multiply a matrix times a vector of the same dimension. Deliver in notation A*v, where A is the matrix and v the vector. The * is mandatory.")
         private String prod = "";
 
-        @Option(names = {"-solve"}, required = true, description = "Solves a system of equations M*x = b. Deliver in notation M*x = b, where M is the matrix, x represents the vector of unknown variables and b the vector of constants. The * and x are mandatory")
+        @Option(names = {"-solve"}, required = true, description = "Solves a system of equations M*x=b. Deliver in notation M*x=b, where M is the matrix, x represents the vector of unknown variables and b the vector of constants. The * and x are mandatory")
         private String sol = "";
 
-        @Option(names = {"-scalarm"}, required = true, description = "Multiplies a matrix by a scalar s in the notation s*M and saves it in a variable B. The notation is s*M--B")
+        @Option(names = {"-scalarm"}, required = true, description = "Multiplies a matrix M by a scalar s in the notation s*M and saves it in a variable B. The notation is s*M--B")
         private String scM = "";
 
-        @Option(names = {"-scalarv"}, required = true, description = "Multiplies a vector by a scalar s in the notation s*v and saves it in a variable w. The notation is s*v--w")
+        @Option(names = {"-scalarv"}, required = true, description = "Multiplies a vector v by a scalar s in the notation s*v and saves it in a variable w. The notation is s*v--w")
         private String scV = "";
 
-        @Option(names = {"-dotm"}, required = true, description = "Multiplies a matrix by another matrix element by element. The notation is A.B--C")
+        @Option(names = {"-dotm"}, required = true, description = "Multiplies a matrix A by another matrix B element by element. The notation is A.B--C")
         private String dotM = "";
 
-        @Option(names = {"-dotv"}, required = true, description = "Multiplies a vector by another vector and returns a scalar. The notation is v.w")
+        @Option(names = {"-dotv"}, required = true, description = "Multiplies a vector v by another vector w and returns a scalar. The notation is v.w")
         private String dotV = "";
 
-        @Option(names = {"-prodm"}, required = true, description = "Multiplies a matrix by another matrix of the same dimensions ans returns another matrix. The notation is A*B--C")
+        @Option(names = {"-prodm"}, required = true, description = "Multiplies a matrix A by another matrix B of the same dimensions ans returns another matrix. The notation is A*B--C")
         private String prodm = "";
 
-        @Option(names = {"-getcol"}, required = true, description = "Gets column c of a given matrix and stores it in a vector. The notation is c@M--v")
+        @Option(names = {"-getcol"}, required = true, description = "Gets column c of a given matrix M and stores it in a vector. The notation is c@M--v")
         private String getcol = "";
 
-        @Option(names = {"-getrow"}, required = true, description = "Gets row l of a given matrix and stores it in a vector. The notation is l@M--v")
+        @Option(names = {"-getrow"}, required = true, description = "Gets row l of a given matrix M and stores it in a vector. The notation is l@M--v")
         private String getRow = "";
 
-        @Option(names = {"-getdiag"}, required = true, description = "Gets diagonal of a given matrix and stores it in a vector. The notation is M--d")
+        @Option(names = {"-getdiag"}, required = true, description = "Gets diagonal of a given matrix M and stores it in a vector. The notation is M--d")
         private String getDiag = "";
 
-        @Option(names = {"-tr"}, required = true, description = "Transposes matrix M and stores it in N. Notation M--N")
+        @Option(names = {"-tr"}, required = true, description = "Computes the transpose of a matrix M and stores it in N. Notation M--N")
         private String tr = "";
 
-        @Option(names = {"-inv"}, required = true, description = "Computes the inverse of a given matrix M. Notation M--N")
+        @Option(names = {"-inv"}, required = true, description = "Computes the inverse of a matrix M and stores it in N. Notation M--N")
         private String inv = "";
 
         @Option(names = {"-trace"}, required = true, description = "Computes the trace of a given matrix M.")
