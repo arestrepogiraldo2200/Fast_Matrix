@@ -80,6 +80,8 @@ public class InverseMatrix {
             System.out.println("Non invertible matrix.");
             return zeros(1);
         } else {
+            printMatrix(adjugateMatrix(M));
+            System.out.println("det: "+determinant(M));
             return scalarProduct(adjugateMatrix(M), 1.0 / determinant(M));
         }
     }

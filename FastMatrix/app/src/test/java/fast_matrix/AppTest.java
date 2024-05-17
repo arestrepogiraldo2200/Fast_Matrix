@@ -3,12 +3,149 @@
  */
 package fast_matrix;
 
+import com.codigofacilito.fastmatrix.*;
+import org.junit.Assert;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static com.codigofacilito.fastmatrix.InverseMatrix.inverseMatrix;
+import static com.codigofacilito.fastmatrix.MatrixUtils.printMatrix;
+import static com.codigofacilito.fastmatrix.ReadData.storeMatrixData;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-//    @Test void appHasAGreeting() {
-//        App classUnderTest = new App();
-//        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
-//    }
+
+
+    // ===============================================================================
+    @DisplayName("Test the input of a 3x3 matrix")
+    @Test
+    public void testInput() {
+
+        String simulatedInput = "3\n1 2 3\n4 5 6\n7 8 9\n";
+        ByteArrayInputStream simulatedIN = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(simulatedIN);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        ArrayList<ArrayList<Double>> M = ReadData.enterMatrix();
+
+        ArrayList<ArrayList<Double>> MExp = new ArrayList<>();
+        MExp.add(new ArrayList<>(Arrays.asList(1.0,2.0,3.0)));
+        MExp.add(new ArrayList<>(Arrays.asList(4.0,5.0,6.0)));
+        MExp.add(new ArrayList<>(Arrays.asList(7.0,8.0,9.0)));
+
+        assertEquals(MExp, M);
+
+        System.setIn(System.in);
+        System.setOut(System.out);
+    }
+
+    // ===============================================================================
+    @DisplayName("Test display of a matrix")
+    @Test
+    public void testDisplay() {
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+
+        ArrayList<ArrayList<Double>> M = new ArrayList<>();
+        M.add(new ArrayList<>(Arrays.asList(1.0,2.0,3.0)));
+        M.add(new ArrayList<>(Arrays.asList(4.0,5.0,6.0)));
+        M.add(new ArrayList<>(Arrays.asList(7.0,8.0,9.0)));
+
+        printMatrix(M);
+
+        String expectedOutput = " 1.000    2.000    3.000   \n" +
+                " 4.000    5.000    6.000   \n" +
+                " 7.000    8.000    9.000   \n";
+
+        assertEquals(outputStream.toString(), expectedOutput);
+
+        System.setIn(System.in);
+        System.setOut(System.out);
+    }
+
+    // ===============================================================================
+    @DisplayName("Test of the result of the determinant of a known matrix.")
+    @Test
+    public void testDet() {
+
+        ArrayList<ArrayList<Double>> M = new ArrayList<>();
+        M.add(new ArrayList<>(Arrays.asList(7.0,2.0,1.0)));
+        M.add(new ArrayList<>(Arrays.asList(0.0,3.0,-1.0)));
+        M.add(new ArrayList<>(Arrays.asList(-3.0,4.0,-2.0)));
+
+        double det = MatrixDeterminant.determinant(M);
+        double resExp = 1.0;
+
+        assertEquals(det,resExp);
+    }
+
+    // ===============================================================================
+    @DisplayName("Test of the result of the inverse of a known matrix and a case where inverse cannot be calculated. Then it tests the product is the identity")
+    @Test
+    public void testInvandProduct() {
+
+        ArrayList<ArrayList<Double>> M = new ArrayList<>();
+        M.add(new ArrayList<>(Arrays.asList(1.0,2.0,3.0)));
+        M.add(new ArrayList<>(Arrays.asList(0.0,1.0,4.0)));
+        M.add(new ArrayList<>(Arrays.asList(5.0,6.0,0.0)));
+
+        ArrayList<ArrayList<Double>> MExp = new ArrayList<>();
+        MExp.add(new ArrayList<>(Arrays.asList(-24.0,18.0,5.0)));
+        MExp.add(new ArrayList<>(Arrays.asList(20.0,-15.0,-4.0)));
+        MExp.add(new ArrayList<>(Arrays.asList(-5.0,4.0,1.0)));
+
+        ArrayList<ArrayList<Double>> Minv = inverseMatrix(M);
+
+        assertEquals(MExp,Minv);
+        assertEquals(MatrixOperations.matrixProduct(M,Minv),MatrixUtils.identity(3));
+
+    }
+
+    // ===============================================================================
+    @DisplayName("Test of a case where inverse cannot be calculated.")
+    @Test
+    public void testInvNeg() {
+
+        ArrayList<ArrayList<Double>> M = new ArrayList<>();
+        M.add(new ArrayList<>(Arrays.asList(1.0, 1.0)));
+        M.add(new ArrayList<>(Arrays.asList(3.0, 3.0)));
+
+        ArrayList<ArrayList<Double>> Minv = inverseMatrix(M);
+
+        assertEquals(Minv, MatrixUtils.zeros(1));
+    }
+
+    // ===============================================================================
+    @DisplayName("Test of a system of 3 variables and 3 equations.")
+    @Test
+    public void testSolve() {
+
+        ArrayList<ArrayList<Double>> M = new ArrayList<>();
+        M.add(new ArrayList<>(Arrays.asList(1.0,2.0,-2.0)));
+        M.add(new ArrayList<>(Arrays.asList(2.0,1.0,-5.0)));
+        M.add(new ArrayList<>(Arrays.asList(1.0,-4.0,1.0)));
+
+        ArrayList<Double> v = new ArrayList<>();
+        v.add(-15.0);
+        v.add(-21.0);
+        v.add(18.0);
+
+        ArrayList<Double> solExp = new ArrayList<>();
+        solExp.add(-1.0);
+        solExp.add(-4.0);
+        solExp.add(3.0);
+
+        assertEquals(solExp, MatrixSolveSystem.solveByGauss(M,v));
+    }
 }
