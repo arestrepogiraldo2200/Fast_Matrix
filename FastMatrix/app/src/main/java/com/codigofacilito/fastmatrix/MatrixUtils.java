@@ -3,10 +3,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * The MatrixUtils class provides a set of utility methods for manipulating matrices and vectors.
+ * These methods include printing matrices and vectors, extracting specific rows, columns, and diagonals,
+ * as well as creating matrices of zeros, ones, and identity matrices. Additionally, it includes
+ * methods for transposing matrices and editing specific rows or columns of matrices.
+ */
 public class MatrixUtils {
 
     // ================================================================================
-    // Prints a matrix in the json database
+    /**
+     * Prints the given matrix to the console.
+     * @param M the matrix to print, represented as a list of lists of Doubles.
+     */
     public static void printMatrix(ArrayList<ArrayList<Double>> M) {
         for (int i = 0; i < M.size(); i++) {
             for (int j = 0; j < M.get(i).size(); j++) {
@@ -21,7 +30,10 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Prints a vector in the json database
+    /**
+     * Prints the given vector to the console.
+     * @param M the vector to print, represented as a list of Doubles.
+     */
     public static void printVector(ArrayList<Double> M) {
         for (int i = 0; i < M.size(); i++) {
             System.out.printf("%5.3f   ", M.get(i));
@@ -30,7 +42,12 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Extracts a specific column of a matrix in the json database
+    /**
+     * Extracts a specific column from the given matrix.
+     * @param M the matrix from which to extract the column.
+     * @param i the index of the column to extract.
+     * @return the extracted column as a list of Doubles.
+     */
     public static ArrayList<Double> getColumn(ArrayList<ArrayList<Double>> M, int i) {
 
         ArrayList<Double> Col = new ArrayList<>();
@@ -41,7 +58,12 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Extracts a specific row of a matrix in the json database
+    /**
+     * Extracts a specific row from the given matrix.
+     * @param M the matrix from which to extract the row.
+     * @param i the index of the row to extract.
+     * @return the extracted row as a list of Doubles.
+     */
     public static ArrayList<Double> getRow(ArrayList<ArrayList<Double>> M, int i) {
 
         ArrayList<Double> Row = M.get(i);
@@ -49,7 +71,11 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Extracts the diagonal of a matrix in the json database
+    /**
+     * Extracts the diagonal elements from the given matrix.
+     * @param M the matrix from which to extract the diagonal.
+     * @return the extracted diagonal as a list of Doubles.
+     */
     public static ArrayList<Double> getDiagonal(ArrayList<ArrayList<Double>> M) {
 
         ArrayList<Double> diag = new ArrayList<>();
@@ -61,7 +87,11 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Returns the identity matrix of a given dimension
+    /**
+     * Creates an identity matrix of the given dimension.
+     * @param a the dimension of the identity matrix.
+     * @return the identity matrix as a list of lists of Doubles.
+     */
     public static ArrayList<ArrayList<Double>> identity(int a) {
 
         ArrayList<ArrayList<Double>> I = new ArrayList<>(a);
@@ -77,7 +107,11 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Returns a matrix of ones of a given dimension
+    /**
+     * Creates a matrix of ones with the given dimension.
+     * @param a the dimension of the matrix.
+     * @return the matrix of ones as a list of lists of Doubles.
+     */
     public static ArrayList<ArrayList<Double>> ones(int a) {
 
         ArrayList<ArrayList<Double>> O = new ArrayList<>(a);
@@ -90,7 +124,11 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Returns a matrix of zeros of a given dimension
+    /**
+     * Creates a matrix of zeros with the given dimension.
+     * @param a the dimension of the matrix.
+     * @return the matrix of zeros as a list of lists of Doubles.
+     */
     public static ArrayList<ArrayList<Double>> zeros(int a) {
 
         ArrayList<ArrayList<Double>> Z = new ArrayList<>(a);
@@ -101,9 +139,12 @@ public class MatrixUtils {
         return Z;
     }
 
-
     // ================================================================================
-    // Returns a vector of zeros of a given dimension
+    /**
+     * Creates a vector of zeros with the given dimension.
+     * @param a the dimension of the vector.
+     * @return the vector of zeros as a list of Doubles.
+     */
     public static ArrayList<Double> zerosV(int a) {
 
         ArrayList<Double> vZ = new ArrayList<>(a);
@@ -116,7 +157,11 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Returns the transpose of a given matrix
+    /**
+     * Transposes the given matrix.
+     * @param M the matrix to transpose.
+     * @return the transposed matrix as a list of lists of Doubles.
+     */
     public static ArrayList<ArrayList<Double>> transposeMatrix(ArrayList<ArrayList<Double>> M) {
 
         ArrayList<ArrayList<Double>> Mt = new ArrayList<>(M.size());
@@ -135,7 +180,12 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Edit the row of a given matrix
+    /**
+     * Edits a specific row of the given matrix.
+     * @param row the index of the row to edit.
+     * @param M the matrix to edit.
+     * @return the edited matrix as a list of lists of Doubles.
+     */
     public static ArrayList<ArrayList<Double>> editRow(int row, ArrayList<ArrayList<Double>> M) {
 
         if (row<1 || row >M.size()){
@@ -153,7 +203,12 @@ public class MatrixUtils {
     }
 
     // ================================================================================
-    // Edit the column of a given matrix
+    /**
+     * Edits a specific column of the given matrix.
+     * @param col the index of the column to edit.
+     * @param M the matrix to edit.
+     * @return the edited matrix as a list of lists of Doubles.
+     */
     public static ArrayList<ArrayList<Double>> editColumn(int col, ArrayList<ArrayList<Double>> M) {
 
         if (col<1 || col >M.size()){

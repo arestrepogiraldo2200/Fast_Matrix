@@ -1,17 +1,24 @@
 package com.codigofacilito.fastmatrix;
 
 import java.util.ArrayList;
-import java.util.concurrent.SynchronousQueue;
 
 import static com.codigofacilito.fastmatrix.MatrixDeterminant.determinant;
 import static com.codigofacilito.fastmatrix.MatrixOperations.scalarProduct;
 import static com.codigofacilito.fastmatrix.MatrixUtils.*;
 import static java.lang.Math.pow;
 
+/**
+ * The InverseMatrix class provides methods to compute the inverse of a matrix.
+ * It includes methods for calculating the adjugate matrix, cofactor entries, and the inverse matrix.
+ */
 public class InverseMatrix {
 
     // ================================================================================
-    // Computes the adjugate matrix
+    /**
+     * Computes the adjugate matrix of the given matrix.
+     * @param M the original matrix, represented as a list of lists of Doubles.
+     * @return the adjugate matrix of the given matrix.
+     */
     private static ArrayList<ArrayList<Double>> adjugateMatrix(ArrayList<ArrayList<Double>> M) {
 
         ArrayList<ArrayList<Double>> Madj = new ArrayList<>();
@@ -30,7 +37,13 @@ public class InverseMatrix {
     }
 
     // ================================================================================
-    // Computes the determinant of a cofactor matrix
+    /**
+     * Computes the determinant of the cofactor matrix by removing the specified row and column.
+     * @param M the original matrix, represented as a list of lists of Doubles.
+     * @param k the row to be removed.
+     * @param l the column to be removed.
+     * @return the determinant of the cofactor matrix.
+     */
     private static double cofactorEntry(ArrayList<ArrayList<Double>> M, int k, int l) {
 
         ArrayList<ArrayList<Double>> Mcof = new ArrayList<>();
@@ -56,7 +69,11 @@ public class InverseMatrix {
     }
 
     // ================================================================================
-    // Computes the inverse of a matrix
+    /**
+     * Computes the inverse of the given matrix.
+     * @param M the original matrix, represented as a list of lists of Doubles.
+     * @return the inverse matrix if the given matrix is invertible; otherwise, a matrix of zeros.
+     */
     public static ArrayList<ArrayList<Double>> inverseMatrix(ArrayList<ArrayList<Double>> M) {
 
         if (determinant(M) == 0.0) {

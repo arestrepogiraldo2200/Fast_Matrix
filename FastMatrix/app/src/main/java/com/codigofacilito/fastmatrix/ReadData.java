@@ -7,13 +7,43 @@ import org.json.*;
 import static com.codigofacilito.fastmatrix.MatrixUtils.zeros;
 import static com.codigofacilito.fastmatrix.MatrixUtils.zerosV;
 
+/**
+ * ReadData class provides methods for reading matrices and vectors from the console,
+ * converting them to JSON format, and storing them in a JSON file. It also includes methods
+ * for retrieving and converting data from the JSON file.
+ * <p>
+ * The JSON file is used as a database to store and retrieve the matrices and vectors defined by the user.
+ * The class includes methods to handle the creation of the JSON file, appending data, clearing
+ * data, and searching for specific matrices or vectors by name.
+ * </p>
+ * <p>
+ * The methods provided by this class by purpose are:
+ * <ul>
+ *   <li>enterMatrix, readRow, castRow, enterVector, readEntryReading: matrices and vectors from the console</li>
+ *   <li>jsonMatrix, jsonVector, appendMatrixData, appendVectorData: Converting matrices and vectors to and from JSON format</li>
+ *   <li>storeMatrixData, storeVectorData, castJSONMatrixtoArrayList, castJSONVectortoArrayList, getMatrix, getVector: Storing and retrieving matrices and vectors from a JSON file</li>
+ *   <li>checkExistence, clearData: Handling the creation and maintenance of the JSON file</li>
+ * </ul>
+ * </p>
+ * <p>
+ * The JSON structure for storing matrices and vectors is as follows:
+ * <ul>
+ *   <li>name: The name of the matrix or vector</li>
+ *   <li>type: The type of the data ("m" for matrices, "v" for vectors)</li>
+ *   <li>object: The matrix or vector data in JSON format</li>
+ * </ul>
+ * </p>
+ */
 public class ReadData {
 
     // Database file name
     static String jsonfile = "./data.json";
 
     // ================================================================================
-    // Reads from console the entries of a matrix
+    /**
+     * Reads the entries of a square matrix from the console.
+     * @return A 2D ArrayList representing the matrix.
+     */
     public static ArrayList<ArrayList<Double>> enterMatrix() {
 
         System.out.println("Enter the dimension of a square matrix: ");
@@ -48,7 +78,12 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Reads a single row from console
+    /**
+     * Reads a single row of a matrix from the console.
+     * @param dim The dimension of the matrix.
+     * @return An ArrayList representing the row.
+     * @throws Exception If there is an error reading the row.
+     */
     private static ArrayList<Double> readRow(int dim) throws Exception {
         Scanner scanner = new Scanner(System.in);
         String row = scanner.nextLine();
@@ -56,7 +91,13 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Casts the row to double type
+    /**
+     * Casts a row of strings to a row of doubles.
+     * @param row The row of the matrix as a space-separated string.
+     * @param dim The expected dimension of the row.
+     * @return An ArrayList of Doubles.
+     * @throws Exception If the row string cannot be cast to the expected ArrayList dimension.
+     */
     public static ArrayList<Double> castRow(String row, int dim) throws Exception {
 
         String[] rowSplit = row.split(" ");
@@ -72,7 +113,10 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Reads from console the entries of a vector
+    /**
+     * Reads the entries of a vector from the console.
+     * @return An ArrayList representing the vector.
+     */
     public static ArrayList<Double> enterVector() {
 
         Scanner scanner = new Scanner(System.in);
@@ -107,7 +151,11 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Reads from console a single entry of a vector
+    /**
+     * Reads a single entry of a vector from the console.
+     * @return The entry as a double.
+     * @throws Exception If there is an error reading the entry.
+     */
     public static double readEntry() throws Exception {
         Scanner scanner = new Scanner(System.in);
         String row = scanner.nextLine();
@@ -115,7 +163,11 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Casts matrix arraylist to json array type
+    /**
+     * Converts a matrix represented by an ArrayList to a JSONArray.
+     * @param M The matrix as an ArrayList of ArrayLists of Doubles.
+     * @return The matrix as a JSONArray.
+     */
     public static JSONArray jsonMatrix(ArrayList<ArrayList<Double>> M) {
 
         JSONArray jsonM = new JSONArray();
@@ -131,7 +183,11 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Casts vector arraylist to json array type
+    /**
+     * Converts a vector represented by an ArrayList to a JSONArray.
+     * @param v The vector as an ArrayList of Doubles.
+     * @return The vector as a JSONArray.
+     */
     public static JSONArray jsonVector(ArrayList<Double> v) {
 
         JSONArray jsonv = new JSONArray();
@@ -143,7 +199,14 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Appends a matrix to the json database
+    /**
+     * Appends a matrix to the JSON database.
+     * @param type The type of the matrix.
+     * @param name The name of the matrix.
+     * @param M The matrix as an ArrayList of ArrayLists of Doubles.
+     * @return A JSONObject representing the matrix.
+     * @throws JSONException If there is an error creating the JSON object.
+     */
     public static JSONObject appendMatrixData(String type, String name, ArrayList<ArrayList<Double>> M) throws JSONException {
 
         JSONObject json = new JSONObject();
@@ -155,7 +218,14 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Appends a vector to the json database
+    /**
+     * Appends a vector to the JSON database.
+     * @param type The type of the vector.
+     * @param name The name of the vector.
+     * @param v The vector as an ArrayList of Doubles.
+     * @return A JSONObject representing the vector.
+     * @throws JSONException If there is an error creating the JSON object.
+     */
     public static JSONObject appendVectorData(String type, String name, ArrayList<Double> v) throws JSONException {
 
         JSONObject json = new JSONObject();
@@ -168,7 +238,9 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Checks if json file exists, if not creates it
+    /**
+     * Checks if the JSON file exists, and creates it if it does not.
+     */
     public static void checkExistence() {
 
         File f = new File(jsonfile);
@@ -183,7 +255,12 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Stores a matrix to the json database
+    /**
+     * Stores a matrix in the JSON database.
+     * @param type The type of the matrix.
+     * @param name The name of the matrix.
+     * @param M The matrix as an ArrayList of ArrayLists of Doubles.
+     */
     public static void storeMatrixData(String type, String name, ArrayList<ArrayList<Double>> M) {
 
         checkExistence();
@@ -227,7 +304,12 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Stores a vector to the json database
+    /**
+     * Stores a vector in the JSON database.
+     * @param type The type of the vector.
+     * @param name The name of the vector.
+     * @param v The vector as an ArrayList of Doubles.
+     */
     public static void storeVectorData(String type, String name, ArrayList<Double> v) {
 
         checkExistence();
@@ -271,7 +353,9 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Deletes all data in the json database
+    /**
+     * Deletes all data in the JSON database.
+     */
     public static void clearData() {
 
         checkExistence();
@@ -286,7 +370,11 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Casts from json database to the arraylist type
+    /**
+     * Converts a matrix represented by a JSONArray to an ArrayList.
+     * @param M The matrix as a JSONArray.
+     * @return The matrix as an ArrayList of ArrayLists of Doubles.
+     */
     public static ArrayList<ArrayList<Double>> castJSONMatrixtoArrayList(JSONArray M) {
 
         ArrayList<ArrayList<Double>> castedM = new ArrayList<>();
@@ -304,7 +392,11 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Casts from json database to the arraylist type
+    /**
+     * Converts a vector represented by a JSONArray to an ArrayList.
+     * @param v The vector as a JSONArray.
+     * @return The vector as an ArrayList of Doubles.
+     */
     public static ArrayList<Double> castJSONVectortoArrayList(JSONArray v) {
 
         ArrayList<Double> castedv = new ArrayList<>();
@@ -317,7 +409,12 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Searches a given name matrix
+    /**
+     * Searches for a matrix with a given name in the JSON database.
+     * @param type The type of the data. It can be only "m" or "v".
+     * @param name The name of the matrix.
+     * @return The matrix as an ArrayList of ArrayLists of Doubles, or a zero matrix if not found.
+     */
     public static ArrayList<ArrayList<Double>> getMatrix(String type, String name) {
 
         checkExistence();
@@ -354,7 +451,12 @@ public class ReadData {
     }
 
     // ================================================================================
-    // Searches a given name vector
+    /**
+     * Searches for a vector with a given name in the JSON database.
+     * @param type The type of the data. It can be only "m" or "v".
+     * @param name The name of the vector.
+     * @return The vector as an ArrayList of Doubles, or a zero vector if not found.
+     */
     public static ArrayList<Double> getVector(String type, String name) {
 
         checkExistence();

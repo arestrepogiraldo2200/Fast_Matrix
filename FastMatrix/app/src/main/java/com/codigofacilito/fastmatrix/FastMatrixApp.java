@@ -18,6 +18,12 @@ import static com.codigofacilito.fastmatrix.MatrixSolveSystem.*;
 import static com.codigofacilito.fastmatrix.MatrixOperations.*;
 import static com.codigofacilito.fastmatrix.ReadData.*;
 
+/**
+ * This is a command-line application for operating with square matrices and vectors quickly.
+ * It provides various operations such as defining and initializing matrices and vectors,
+ * editing rows and columns of matrices, computing determinants, products, solutions of systems
+ * of equations, transposes, inverses, traces, and more.
+ */
 @Command(
         name = "fm",
         mixinStandardHelpOptions = true,
@@ -30,6 +36,9 @@ public class FastMatrixApp implements Callable<Integer> {
     @ArgGroup(exclusive = true)
     private JEnvOptions jEnvOptions;
 
+    /**
+     * Inner class for defining command-line options.
+     */
     static class JEnvOptions {
 
         @Option(names = {"-defm"}, description = "Define and initialize a square matrix of the given name nameM.")
@@ -96,7 +105,14 @@ public class FastMatrixApp implements Callable<Integer> {
         private String trace = "";
     }
 
-    // Call method to inform the status of execution
+    /**
+     * Implements the call method defined in the Callable interface.
+     * This method is invoked when the command-line application is executed.
+     * It performs various matrix operations based on the provided options.
+     *
+     * @return An integer value indicating the status of execution.
+     * @throws Exception If an error occurs during the execution of matrix operations.
+     */
     @Override
     public Integer call() throws Exception {
 
@@ -576,6 +592,10 @@ public class FastMatrixApp implements Callable<Integer> {
         return 0;
     }
 
+    /**
+     * Main method to run the command-line application.
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
 
         // Communication with terminal
